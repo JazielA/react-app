@@ -1,13 +1,16 @@
-function Card() {
+interface CardProps {
+  body: string;
+}
+
+function Card(props: CardProps) {
+  const { body } = props;
+
   const width = {
     width: "350px",
   };
-
   return (
     <div className="card" style={width}>
-      <div className="card-body">
-        <CardBody />
-      </div>
+      <div className="card-body"> {body}</div>
     </div>
   );
 }
