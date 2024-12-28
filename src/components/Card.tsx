@@ -1,31 +1,34 @@
-interface CardProps {
-  body: string;
+import { ReactNode } from "react";
+
+interface Card {
+  // con la propiedad de children se puede agregar el componente CardBody al componente Card en App.tsx
+  children: ReactNode;
 }
 
-function Card(props: CardProps) {
-  const { body } = props;
+function Card(props: Card) {
+  const { children } = props;
 
   const width = {
     width: "350px",
   };
   return (
     <div className="card" style={width}>
-      <div className="card-body"> {body}</div>
+      <div className="card-body"> {children}</div>
     </div>
   );
 }
 
-export function CardBody() {
+interface CardBodyProps {
+  title: string;
+  text?: string; // con el signo de pregunta(text?) se indica que una propiedad opcional
+}
+
+export function CardBody(props: CardBodyProps) {
+  const { title, text } = props;
   return (
     <>
-      <h5 className="card-title">Card title</h5>
-      <p className="card-text">
-        Some quick example text to build on the card title and make up the bulk
-        of the card's content.
-      </p>
-      <a href="#" className="btn btn-primary">
-        Go somewhere
-      </a>
+      <h5 className="card-title">{title}</h5>
+      <p className="card-text">{text}</p>
     </>
   );
 }
